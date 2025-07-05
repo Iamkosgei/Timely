@@ -1,0 +1,86 @@
+name: timely
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  cupertino_icons: ^1.0.6
+  
+  # State Management
+  flutter_bloc: ^8.1.6
+  
+  # Functional Programming
+  dartz: ^0.10.1
+  
+  # Dependency Injection
+  get_it: ^7.7.0
+  injectable: ^2.4.4
+  
+  # Network
+  dio: ^5.7.0
+  internet_connection_checker: ^1.0.0+1
+  
+  # Local Storage
+  shared_preferences: ^2.3.2
+  
+  # Code Generation
+  equatable: ^2.0.5
+  
+  # Utils
+  uuid: ^4.5.0
+  
+  # Logging
+  logger: ^2.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+  
+  # Code Generation
+  injectable_generator: ^2.6.2
+  build_runner: ^2.4.13
+
+flutter:
+
+  uses-material-design: true
+
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
