@@ -22,8 +22,15 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _HomePageContent extends StatelessWidget {
+class _HomePageContent extends StatefulWidget {
   const _HomePageContent();
+
+  @override
+  State<_HomePageContent> createState() => _HomePageContentState();
+}
+
+class _HomePageContentState extends State<_HomePageContent> {
+  bool _isBottomSheetShowing = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +49,25 @@ class _HomePageContent extends StatelessWidget {
                 child: BlocConsumer<NumberCubit, NumberState>(
                   listener: (context, state) {
                     if (state is PrimeNumberFound) {
+                      // Close any existing bottom sheet first
+                      if (_isBottomSheetShowing) {
+                        Navigator.of(context).pop();
+                      }
+
+                      _isBottomSheetShowing = true;
                       showModalBottomSheet(
                         context: context,
                         isScrollControlled: true,
                         backgroundColor: Colors.transparent,
+                        barrierColor: Colors.black.withValues(alpha: 0.7),
                         builder: (context) => PrimeNotificationBottomSheet(
                           primeNumber: state.numberData,
                           lastPrimeTime: state.lastPrimeTime,
                         ),
-                      );
+                      ).then((_) {
+                        // Reset flag when bottom sheet is dismissed
+                        _isBottomSheetShowing = false;
+                      });
                     } else if (state is NumberError) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

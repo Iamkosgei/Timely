@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entities/number_data.dart';
 
-/// Bottom sheet shown when a prime number is found
 class PrimeNotificationBottomSheet extends StatelessWidget {
   final NumberData primeNumber;
   final DateTime? lastPrimeTime;
@@ -16,12 +15,20 @@ class PrimeNotificationBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: Colors.grey.shade900,
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.green.withValues(alpha: 0.1),
+            blurRadius: 20,
+            spreadRadius: 5,
+            offset: const Offset(0, -5),
+          ),
+        ],
       ),
       child: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -29,7 +36,7 @@ class PrimeNotificationBottomSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Handle bar
+            // Handle bar with glow effect
             Center(
               child: Container(
                 width: 40,
@@ -37,6 +44,13 @@ class PrimeNotificationBottomSheet extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.green,
                   borderRadius: BorderRadius.circular(2),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.green.withValues(alpha: 0.5),
+                      blurRadius: 8,
+                      spreadRadius: 2,
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -69,7 +83,7 @@ class PrimeNotificationBottomSheet extends StatelessWidget {
                     ),
               ),
             const SizedBox(height: 48),
-            // Close button
+            // Close button with enhanced styling
             Center(
               child: Container(
                 width: 120,
@@ -77,6 +91,13 @@ class PrimeNotificationBottomSheet extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.green,
                   borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.green.withValues(alpha: 0.3),
+                      blurRadius: 12,
+                      spreadRadius: 2,
+                    ),
+                  ],
                 ),
                 child: Material(
                   color: Colors.transparent,
