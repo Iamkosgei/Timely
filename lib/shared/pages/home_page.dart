@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,7 +32,36 @@ class _HomePageContent extends StatefulWidget {
 }
 
 class _HomePageContentState extends State<_HomePageContent> {
-  bool _isBottomSheetShowing = false;
+  Completer<void>? _bottomSheetCompleter;
+
+  Future<void> _showPrimeBottomSheet(
+      BuildContext context, PrimeNumberFound state) async {
+    if (_bottomSheetCompleter != null && !_bottomSheetCompleter!.isCompleted) {
+      Navigator.of(context).pop();
+      await _bottomSheetCompleter!.future;
+    }
+
+    // Create new completer for this bottom sheet
+    _bottomSheetCompleter = Completer<void>();
+
+    if (!mounted) return;
+
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      barrierColor: Colors.black.withValues(alpha: 0.7),
+      builder: (context) => PrimeNotificationBottomSheet(
+        primeNumber: state.numberData,
+        lastPrimeTime: state.previousPrimeTime,
+      ),
+    ).then((_) {
+      if (_bottomSheetCompleter != null &&
+          !_bottomSheetCompleter!.isCompleted) {
+        _bottomSheetCompleter!.complete();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,25 +80,7 @@ class _HomePageContentState extends State<_HomePageContent> {
                 child: BlocConsumer<NumberCubit, NumberState>(
                   listener: (context, state) {
                     if (state is PrimeNumberFound) {
-                      // Close any existing bottom sheet first
-                      if (_isBottomSheetShowing) {
-                        Navigator.of(context).pop();
-                      }
-
-                      _isBottomSheetShowing = true;
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        barrierColor: Colors.black.withValues(alpha: 0.7),
-                        builder: (context) => PrimeNotificationBottomSheet(
-                          primeNumber: state.numberData,
-                          lastPrimeTime: state.previousPrimeTime,
-                        ),
-                      ).then((_) {
-                        // Reset flag when bottom sheet is dismissed
-                        _isBottomSheetShowing = false;
-                      });
+                      _showPrimeBottomSheet(context, state);
                     } else if (state is NumberError) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
