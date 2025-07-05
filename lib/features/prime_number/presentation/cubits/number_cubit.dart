@@ -51,6 +51,7 @@ class NumberCubit extends Cubit<NumberState> {
             numberData: lastNumber,
             lastFetchTime: _lastFetchTime!,
             lastPrimeTime: _lastPrimeNumber?.timestamp,
+            previousPrimeTime: null,
           ));
         } else {
           emit(NumberLoaded(
@@ -83,6 +84,7 @@ class NumberCubit extends Cubit<NumberState> {
             numberData: lastNumber,
             lastFetchTime: _lastFetchTime!,
             lastPrimeTime: _lastPrimeNumber?.timestamp,
+            previousPrimeTime: null,
           ));
         } else {
           emit(NumberLoaded(
@@ -158,7 +160,7 @@ class NumberCubit extends Cubit<NumberState> {
 
             // Handle prime number found
             if (isPrime) {
-              // Capture the previous prime time before updating
+              // Capture the previous prime time before updating (for bottom sheet)
               final previousPrimeTime = _lastPrimeNumber?.timestamp;
 
               // Cache this as the new last prime number
@@ -169,11 +171,12 @@ class NumberCubit extends Cubit<NumberState> {
                 // Continue even if caching fails
               }
 
-              // Emit prime found state with previous prime time
+              // Emit prime found state with current prime time (for status reset)
               emit(PrimeNumberFound(
                 numberData: numberData,
                 lastFetchTime: _lastFetchTime!,
-                lastPrimeTime: previousPrimeTime,
+                lastPrimeTime: numberData.timestamp,
+                previousPrimeTime: previousPrimeTime,
               ));
             } else {
               // For non-prime numbers, show time since last prime

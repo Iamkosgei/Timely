@@ -443,7 +443,9 @@ class _PrimeFoundStatusWidgetState extends State<PrimeFoundStatusWidget>
         const SizedBox(height: 4),
         if (widget.lastPrimeTime != null && _timeSinceLastPrime.isNotEmpty)
           Text(
-            'Last prime: $_timeSinceLastPrime ago',
+            DateTime.now().difference(widget.lastPrimeTime!).inSeconds < 5
+                ? 'Just found!'
+                : 'Last prime: $_timeSinceLastPrime ago',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Colors.grey.shade500,
                 ),

@@ -62,7 +62,7 @@ class _HomePageContentState extends State<_HomePageContent> {
                         barrierColor: Colors.black.withValues(alpha: 0.7),
                         builder: (context) => PrimeNotificationBottomSheet(
                           primeNumber: state.numberData,
-                          lastPrimeTime: state.lastPrimeTime,
+                          lastPrimeTime: state.previousPrimeTime,
                         ),
                       ).then((_) {
                         // Reset flag when bottom sheet is dismissed

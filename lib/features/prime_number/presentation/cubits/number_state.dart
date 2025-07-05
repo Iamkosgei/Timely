@@ -49,15 +49,18 @@ class PrimeNumberFound extends NumberState {
   final NumberData numberData;
   final DateTime lastFetchTime;
   final DateTime? lastPrimeTime;
+  final DateTime? previousPrimeTime;
 
   const PrimeNumberFound({
     required this.numberData,
     required this.lastFetchTime,
     this.lastPrimeTime,
+    this.previousPrimeTime,
   });
 
   @override
-  List<Object?> get props => [numberData, lastFetchTime, lastPrimeTime];
+  List<Object?> get props =>
+      [numberData, lastFetchTime, lastPrimeTime, previousPrimeTime];
 }
 
 /// Error state
