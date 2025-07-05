@@ -11,6 +11,13 @@ A Flutter application that combines a beautiful digital clock interface with an 
 - **Offline Support**: Local caching with network connectivity detection
 - **State Management**: Robust state handling using BLoC pattern
 
+## 📱 Screenshots
+
+| Loading State | Number Loaded (Not Prime) | Prime Number Found |
+|:-------------:|:-------------------------:|:------------------:|
+| ![Fetching](https://github.com/user-attachments/assets/9476cc7c-b9db-446c-bf0d-e317217f2b18) | ![Not Prime](https://github.com/user-attachments/assets/769b885e-6a08-47d7-8d6d-5f553e52b8fd) | ![Prime Found](https://github.com/user-attachments/assets/5d9c5902-342b-4ba0-9391-3d7532810322) |
+| App fetching random numbers from API | Non-prime number detected | Prime number discovered with notification |
+
 ## 📦 Key Packages
 
 ### State Management
@@ -138,7 +145,7 @@ lib/
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:Iamkosgei/Timely.git
    cd timely
    ```
 
