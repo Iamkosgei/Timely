@@ -59,10 +59,10 @@ class PrimeNotificationBottomSheet extends StatelessWidget {
                   ),
             ),
             const SizedBox(height: 16),
-            // Time elapsed since last prime
+            // Time elapsed since last prime (static)
             if (lastPrimeTime != null)
               Text(
-                'Time since last prime number ${_formatDuration(DateTime.now().difference(lastPrimeTime!))}',
+                'Time since last prime number ${_formatDuration(primeNumber.timestamp.difference(lastPrimeTime!))}',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: Colors.grey.shade400,
                       fontSize: 14,

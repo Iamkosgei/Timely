@@ -158,6 +158,9 @@ class NumberCubit extends Cubit<NumberState> {
 
             // Handle prime number found
             if (isPrime) {
+              // Capture the previous prime time before updating
+              final previousPrimeTime = _lastPrimeNumber?.timestamp;
+
               // Cache this as the new last prime number
               try {
                 await localDataSource.cacheLastPrimeNumber(numberData);
@@ -166,11 +169,11 @@ class NumberCubit extends Cubit<NumberState> {
                 // Continue even if caching fails
               }
 
-              // Emit prime found state
+              // Emit prime found state with previous prime time
               emit(PrimeNumberFound(
                 numberData: numberData,
                 lastFetchTime: _lastFetchTime!,
-                lastPrimeTime: _lastPrimeNumber?.timestamp,
+                lastPrimeTime: previousPrimeTime,
               ));
             } else {
               // For non-prime numbers, show time since last prime
