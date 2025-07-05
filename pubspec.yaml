@@ -34,8 +34,6 @@ dependencies:
   # Code Generation
   equatable: ^2.0.5
   
-  # Utils
-  uuid: ^4.5.0
   
   # Logging
   logger: ^2.4.0
