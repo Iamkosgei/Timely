@@ -11,7 +11,14 @@ A Flutter application that combines a beautiful digital clock interface with an 
 - **Offline Support**: Local caching with network connectivity detection
 - **State Management**: Robust state handling using BLoC pattern
 
-## 📱 Screenshots
+## 📱 Demo
+
+### 🎥 Video Walkthrough
+See the app in action with real-time prime number detection and clock functionality:
+
+https://github.com/user-attachments/assets/55c52542-61fe-48bd-8711-46f5d1d982b5
+
+### 📸 Screenshots
 
 | Loading State | Number Loaded (Not Prime) | Prime Number Found |
 |:-------------:|:-------------------------:|:------------------:|
